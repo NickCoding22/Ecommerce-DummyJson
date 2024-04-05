@@ -3,9 +3,36 @@ import { createContext, useEffect, useState, useContext } from 'react';
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
+function updateCart(car) {
+    /**
+     * Makes a call to the DummyJson but does not actually
+     * do anything, just represents updating the cart with each iteration.
+     */
+    fetch('https://dummyjson.com/carts/1', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            merge: false, 
+            products: car.products,
+        })
+        })
+        .then(res => res.json())
+        .then(console.log);
+}
+
 const CartBuilder = ({ children }) => {
-    // Default userId 123
-    const [cart, setCart] = useState({userId: 123, products: [{id: 0, quantity: 0}]});
+    /**
+     * Default cartId is 1, gets the carts and gets the first cart
+     * Fetch does not do anything but represents getting the actual cart.
+     * Will use an empty cart for demonstration.
+     */
+    const [cart, setCart] = useState({cartId: 1, products: [{id: 0, quantity: 0}]});
+    useEffect(() => {
+        fetch('https://dummyjson.com/cart/' + cart.cartId)
+            .then(res => res.json())
+            .then(res => {return res})
+            .then(console.log)
+    }, []);
 
     const alterCount = (pID, inc) => {
         const pL = cart.products.slice();
@@ -16,27 +43,25 @@ const CartBuilder = ({ children }) => {
                 } else {
                     pL[i].quantity = pL[i].quantity + inc;
                 }
-                console.log(true)
-                console.log(pL);
                 return pL
             }
         };
         if (inc == 1) {
-            console.log(false)
             pL.push({id: pID, quantity: 1});
-            console.log(pL);
         }
         return pL
     }
-
+    
     const addOne = (id) => {
-        setCart({userId: cart.userId, 
+        setCart({cartId: cart.cartId, 
                  products: alterCount(id, 1)});
+        updateCart(cart);
     }
 
     const removeOne = (id) => {
-        setCart({userId: cart.userId, 
+        setCart({cartId: cart.cartId, 
                  products: alterCount(id, -1)})
+        updateCart(cart);
     }
 
     const value = {

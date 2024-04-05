@@ -1,7 +1,7 @@
 import ItemBox from './ItemBox.jsx'
 import SearchMenu from './SearchMenu.jsx'
-import ShoppingHeader from './ShoppingHeader.jsx';
-import { useProducts } from './ProductsBuilder.jsx'
+import ShoppingHeader from '../ShoppingHeader.jsx';
+import { useProducts } from '../Builders/ProductsBuilder.jsx'
 import {useEffect, useState} from "react";
 
 function ShoppingPage() {
@@ -21,12 +21,12 @@ function ShoppingPage() {
     })} else { productsFiltered = products };
 
     if (filters.length != 0) {
-        console.log(filters);
+        //console.log(filters);
         productsFiltered = productsFiltered.filter((product) => {
             return filters.includes(product.category);
     })}
 
-    console.log(productsFiltered);
+    //console.log(productsFiltered);
 
     return (
         <div className = "main-container">

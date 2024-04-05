@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useProducts } from "./ProductsBuilder";
+import { useProducts } from "./Builders/ProductsBuilder";
 import { useEffect, useState } from "react";
 import ShoppingHeader from './ShoppingHeader.jsx';
-import { useCart } from "./CartBuilder"
+import { useCart } from "./Builders/CartBuilder"
 
 function ProductPage() {
     const {products, categories, loading, error} = useProducts();

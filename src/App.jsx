@@ -1,38 +1,11 @@
-import { useState } from 'react'
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Link } from "react-router-dom";
+import React from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import './App.css'
-import CartBuilder from './CartBuilder'
-import ShoppingHeader from "./ShoppingHeader";
-
-function App() {
-  return (
-    <div id = "main">
-      <ShoppingHeader/>
-      <div id = "opener">
-          <h2>
-            InnoCaption Submission 
-          </h2>
-          <h3>
-            Shopping made easy
-          </h3>
-      </div>
-      <footer>
-        <b>Created by Nicholas Angelici</b>
-      </footer>
-    </div>
-  )
-}
-
-export default App
-/*import React from 'react'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import OpeningPage from './OpeningPage'
-import ShoppingPage from './ShoppingPage'
-import ProductPage from './ProductPage'
-import CartCheckout from './CartCheckout'
+import OpeningPage from './OpeningPage.jsx'
+import ShoppingPage from './ShoppingPage/ShoppingPage.jsx'
+import ProductPage from './ProductPage.jsx'
+import CartCheckout from './ShoppingCart/CartCheckout.jsx'
+import ProductsBuilder from './Builders/ProductsBuilder.jsx';
+import CartBuilder from './Builders/CartBuilder.jsx';
 
 function App () {
   const router = createBrowserRouter([
@@ -54,7 +27,13 @@ function App () {
     },
   ]);
 
-  return <RouterProvider router={router} />
+  return (
+    <ProductsBuilder>
+      <CartBuilder>
+        <RouterProvider router={router} />
+      </CartBuilder>
+    </ProductsBuilder>
+  );
 }
 
-export default App;*/
+export default App;

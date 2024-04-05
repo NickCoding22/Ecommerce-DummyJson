@@ -1,4 +1,4 @@
-import { useCart } from "./CartBuilder"
+import { useCart } from "../Builders/CartBuilder.jsx"
 
 function CartBox (props) {
     const {addOne, removeOne} = useCart();

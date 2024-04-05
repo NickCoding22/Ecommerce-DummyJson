@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useCart } from './CartBuilder';
-import { useProducts } from "./ProductsBuilder";
-import ShoppingHeader from "./ShoppingHeader";
+import { useCart } from '../Builders/CartBuilder';
+import { useProducts } from "../Builders/ProductsBuilder";
+import ShoppingHeader from "../ShoppingHeader";
 import CartBox from "./CartBox";
 
 function getProduct(products, id) {
     const filtered = products.filter((product) => { return product.id == id })
-    console.log(filtered[0]);
+    //console.log(filtered[0]);
     return filtered[0];
 }
 
@@ -15,7 +15,7 @@ function useCartCheckout() {
     const {products} = useProducts();
     let checkout = [];
     const items = cart.products;
-    console.log(items);
+    //console.log(items);
 
     for (const item of items) {
         if (item.id != 0) {
@@ -24,7 +24,7 @@ function useCartCheckout() {
             checkout.push(p);
         }
     }
-    console.log(checkout);
+    //console.log(checkout);
     return checkout
 }
 
