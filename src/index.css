@@ -364,8 +364,8 @@ header a:hover {
 }
 
 footer {
-  margin-top: 10px;
-  height:40px;
+  margin-top: 5px;
+  background-color: white;
   color: black;
   vertical-align: bottom;
 }
