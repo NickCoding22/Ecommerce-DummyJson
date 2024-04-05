@@ -45,6 +45,7 @@ function CartCheckout () {
         <div id = "big-container">
             <div id = "cart-container">
                 <h2 id = "checkout-title">Your total is: ${getTotal()}</h2>
+                <button id = "checkout-button" type="button">Checkout</button>
                 <div id = "checkout-item-container">
                     {checkout.map( (c) => { 
                         return <CartBox 

@@ -295,8 +295,9 @@ h3 {
   padding: 2px 5px;
 }
 
-.change-button {
+.change-button, #checkout-button {
   background-color: white;
+  color:black;
   height: 5%;
   margin-top:auto;
   margin-bottom: auto;
@@ -306,11 +307,17 @@ h3 {
   box-shadow: 3px 3px black;
 }
 
-.change-button:hover {
+#checkout-button {
+  font-size:1.5em;
+  margin:0 22px;
+}
+
+.change-button:hover, #checkout-button:hover {
   color: white;
   background-color:black;
   box-shadow: 3px 3px gray;
 }
+
 
 /* Header and Footer */
 
