@@ -3,6 +3,7 @@ function SearchMenu(props) {
         <search>
             <form>
                 <input 
+                    id = "search-bar"
                     type = "text"
                     onChange={(e) => props.setSearch(e.target.value)}
                 />

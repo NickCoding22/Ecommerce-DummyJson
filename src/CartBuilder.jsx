@@ -3,35 +3,40 @@ import { createContext, useEffect, useState, useContext } from 'react';
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
-//export const useCart = (() => {return [cart, setCart]});
-
 const CartBuilder = ({ children }) => {
     // Default userId 123
-    //const [cart, setCart] = useState({userId: 123, products: [{id: 0, quantity: 0}]});
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState({userId: 123, products: [{id: 0, quantity: 0}]});
 
-    const alterCount = (productList, pID, inc) => {
-        const pL = productList.slice();
-        for (let i = 0; i < pL.length; i++) {
-            if (products[i].id == pID) {
-                products[i].quantity = products[i].quantity + inc;
+    const alterCount = (pID, inc) => {
+        const pL = cart.products.slice();
+        for (let i = 1; i < pL.length; i++) {
+            if (pL[i].id == pID) {
+                if (pL[i].quantity == 1 && inc == -1) {
+                    pL.splice(i, 1);
+                } else {
+                    pL[i].quantity = pL[i].quantity + inc;
+                }
+                console.log(true)
+                console.log(pL);
                 return pL
             }
         };
         if (inc == 1) {
-            pL.pID = inc;
+            console.log(false)
+            pL.push({id: pID, quantity: 1});
+            console.log(pL);
         }
         return pL
     }
 
     const addOne = (id) => {
         setCart({userId: cart.userId, 
-                 products: alterCount(productList, pID, 1)});
+                 products: alterCount(id, 1)});
     }
 
     const removeOne = (id) => {
         setCart({userId: cart.userId, 
-                 products: alterCount(productList, pID, -1)})
+                 products: alterCount(id, -1)})
     }
 
     const value = {

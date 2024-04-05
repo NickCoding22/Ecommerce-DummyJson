@@ -7,6 +7,7 @@ import ShoppingPage from './ShoppingPage'
 import ProductPage from './ProductPage'
 import CartCheckout from './CartCheckout'
 import CartBuilder from './CartBuilder'
+import ProductsBuilder from './ProductsBuilder'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -30,9 +31,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CartBuilder>
-      <RouterProvider router={router} />
-    </CartBuilder>
+    <ProductsBuilder>
+      <CartBuilder>
+        <RouterProvider router={router} />
+      </CartBuilder>
+    </ProductsBuilder>
   </React.StrictMode>
 );
 

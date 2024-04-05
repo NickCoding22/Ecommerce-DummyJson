@@ -1,24 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useProducts } from "./ShoppingPage";
+import { useProducts } from "./ProductsBuilder";
 import { useEffect, useState } from "react";
 import ShoppingHeader from './ShoppingHeader.jsx';
-
-const useShoppingCart = () => {
-    const [shoppingCart, setShoppingCart] = useState({userId: 123, products: []})
-    fetch('https://dummyjson.com/carts/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(shoppingCart)
-    })
-    .then(res => res.json())
-    .then(console.log);
-            
-    return [shoppingCart, setShoppingCart]
-}
+import { useCart } from "./CartBuilder"
 
 function ProductPage() {
     const {products, categories, loading, error} = useProducts();
-    const {shoppingCart, setShoppingCart} = useShoppingCart();
+    const {addOne, removeOne} = useCart();
     const { id } = useParams();
 
     const product = products.filter((p) => {
@@ -33,7 +21,7 @@ function ProductPage() {
         )
     } else {
         return(
-            <div>
+            <div className = "main-container">
             <ShoppingHeader/>
             <div id = "big-container">
                 <div id = "big-item-box">
@@ -41,13 +29,20 @@ function ProductPage() {
                     <div id = "product-info">
                         <h3>{product.title}</h3>
                         <h6>{product.description}</h6>
-                        <p>${product.price}</p>
-                        <p>Rating: {product.rating}</p>
-                        <p>Stock: {product.stock}</p>
-                        <p>Category: {product.category}</p>
+                        <ul>
+                            <li><b>Price:</b> ${product.price}</li>
+                            <li><b>Rating:</b> {product.rating}</li>
+                            <li><b>Stock:</b> {product.stock}</li>
+                            <li><b>Category:</b> {product.category}</li>
+                            <li><button className="change-button" type="button" onClick={() => {addOne(product.id)}}>Add to Cart</button></li>
+                            <li><button className="change-button" type="button" onClick={() => {removeOne(product.id)}}>Remove from Cart</button></li>
+                        </ul>
                     </div>
                 </div>
             </div>
+            <footer>
+                <b>Created by Nicholas Angelici</b>
+            </footer>
             </div>
         )
     }

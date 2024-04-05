@@ -19,6 +19,9 @@ function App() {
             Shopping made easy
           </h3>
       </div>
+      <footer>
+        <b>Created by Nicholas Angelici</b>
+      </footer>
     </div>
   )
 }
